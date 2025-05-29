@@ -24,7 +24,13 @@
         <?php foreach ($riders as $rider): ?>
             <div class="col-md-4 d-flex">
                 <div class="card mb-4 flex-grow-1">
-                <img src="<?= base_url('fotky/' . $rider->photo) ?>" class="card-img-top" ?>
+                <?php 
+                        $photoPath = 'fotky/' . $rider->photo;
+                        if (!file_exists($photoPath) || empty($rider->photo)) {
+                            $photoPath = 'fotky/anonym.png';
+                        }
+                    ?>
+                    <img src="<?= base_url($photoPath) ?>" class="card-img-top" alt="Profilová fotka">
                     <div class="card-body d-flex flex-column">
                         <p class="card-text">
                     <p><strong>Země:</strong> <?= $rider->country ?></p>
