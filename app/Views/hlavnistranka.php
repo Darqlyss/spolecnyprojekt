@@ -11,17 +11,38 @@
     -->
 <?=$this->extend('layout/sablona');?>
 <?=$this->section('content');?>
+<style>
+    .card-img-top{
+        width: 150px;
+        height: 300px; 
+
+        object-fit: cover;
+    }
+</style>
 <div class="container">
     <div class="row">
         <?php foreach ($riders as $rider): ?>
             <div class="col-md-4 d-flex">
                 <div class="card mb-4 flex-grow-1">
+                <img src="<?= base_url('fotky/' . $rider->photo) ?>" class="card-img-top" ?>
                     <div class="card-body d-flex flex-column">
                         <p class="card-text">
-                    <p><strong>Country:</strong> <?= $rider->country ?></p>
-                    <p><strong>Last Name:</strong> <?= $rider->last_name ?></p>
-                    <p><strong>First Name:</strong> <?= $rider->first_name ?></p>
-                    <p><strong>Age:</strong> <?= $rider->date_of_birth ?></p>
+                    <p><strong>Země:</strong> <?= $rider->country ?></p>
+                    <p><strong>Příjmení:</strong> <?= $rider->last_name ?></p>
+                    <p><strong>Jméno:</strong> <?= $rider->first_name ?></p>
+                    <p><strong>Datum narození:</strong> <?= date('d.m.Y', strtotime($rider->date_of_birth))?></p>
+                    <p><strong>Váha:</strong> 
+                                        <?= $rider->weight 
+                                            ? $rider->weight . ' kg' 
+                                            : '???';
+                                        ?>                                        
+                                    </p>
+                                    <p><strong>Výška:</strong>
+                                        <?= $rider->height 
+                                            ? $rider->height . ' cm' 
+                                            : '???';
+                                        ?>
+                                    </p>
                     </p>
                 </div>
             </div>
